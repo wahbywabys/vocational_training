@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>وابيز للتعليم والتدريب · التسجيل في التدريب المهني</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#0E7C66; --brand-d:#0A5A4A; --brand-l:#39A88C; --brand-xl:#E6F2EE;
+  --gold:#C9A23F; --gold-d:#A9861F;
+  --ink:#122A25; --ink2:#3D554E; --muted:#7C8E88; --line:#DCE7E2;
+  --bg:#EAF2EE; --surface:#FFFFFF;
+  --err:#C0392B; --ok:#0E7C66;
+  --sans:"Tajawal","Cairo",system-ui,-apple-system,"Segoe UI","Noto Sans Arabic",Tahoma,Arial,sans-serif;
+  --shadow:0 18px 50px rgba(10,90,74,.14);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans); color:var(--ink); min-height:100vh;
+  background:linear-gradient(160deg,#0A5A4A 0%,#0E7C66 42%,#EAF2EE 42%,#EAF2EE 100%);
+  background-attachment:fixed;
+  padding:26px 16px 44px; -webkit-font-smoothing:antialiased;
+}
+.shell{max-width:620px;margin:0 auto}
+.brandbar{display:flex;align-items:center;gap:13px;color:#fff;margin:6px 4px 20px}
+.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#E7C874,#C9A23F);
+  display:grid;place-items:center;font-weight:800;font-size:27px;color:#0A5A4A;box-shadow:0 8px 20px rgba(0,0,0,.22);flex:none}
+.brandbar .bt b{display:block;font-size:19px;font-weight:800;letter-spacing:.2px}
+.brandbar .bt span{font-size:12.5px;color:#CDE7DF;font-weight:500}
+
+.card{background:var(--surface);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.card-head{padding:26px 26px 20px;position:relative;background:linear-gradient(180deg,#FFFFFF, #F6FBF9);border-bottom:1px solid var(--line)}
+.card-head:before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--gold))}
+.card-head h1{margin:0;font-size:22px;font-weight:800;color:var(--brand-d)}
+.card-head p{margin:7px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.7}
+.card-body{padding:22px 26px 26px}
+
+.fld{margin-bottom:18px}
+.fld > label{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.fld > label .req{color:var(--gold-d);font-weight:800;margin-inline-start:3px}
+.control{position:relative}
+.control .ic{position:absolute;top:50%;transform:translateY(-50%);right:15px;left:auto;font-size:17px;color:var(--brand-l);pointer-events:none;z-index:1}
+input,select{
+  width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:#FBFDFC;
+  border:1.5px solid var(--line);border-radius:13px;padding:14px 46px 14px 16px;appearance:none;-webkit-appearance:none;transition:.16s;outline:none;
+}
+select{cursor:pointer;padding:14px 46px 14px 44px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230E7C66' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;background-position:left 15px center}
+input::placeholder{color:#AEBEB8}
+input:focus,select:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px rgba(14,124,102,.13)}
+.control.bad input,.control.bad select{border-color:var(--err);box-shadow:0 0 0 4px rgba(192,57,43,.10)}
+.hint{font-size:12px;color:var(--muted);margin-top:6px}
+.err{display:none;font-size:12.5px;color:var(--err);margin-top:6px;font-weight:600}
+.control.bad + .err{display:block}
+
+.submit{width:100%;margin-top:6px;border:none;border-radius:14px;padding:16px;font-family:var(--sans);
+  font-size:16.5px;font-weight:800;color:#fff;cursor:pointer;letter-spacing:.3px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-d));box-shadow:0 12px 26px rgba(14,124,102,.34);transition:.16s}
+.submit:hover{transform:translateY(-1px);box-shadow:0 16px 32px rgba(14,124,102,.42)}
+.submit:active{transform:translateY(0)}
+.note{text-align:center;font-size:12px;color:var(--muted);margin-top:16px;line-height:1.7}
+
+.foot{text-align:center;margin:20px 4px 0}
+.foot a{color:#CDE7DF;font-size:12px;text-decoration:none;opacity:.85;cursor:pointer}
+.foot a:hover{opacity:1;text-decoration:underline}
+
+/* thank you */
+.thanks{padding:44px 28px 40px;text-align:center}
+.check{width:88px;height:88px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,var(--brand),var(--brand-l));
+  display:grid;place-items:center;box-shadow:0 14px 34px rgba(14,124,102,.4);animation:pop .5s cubic-bezier(.2,1.2,.4,1)}
+.check svg{width:44px;height:44px;stroke:#fff;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:40;stroke-dashoffset:40;animation:draw .5s .25s forwards}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.thanks h2{margin:0 0 8px;font-size:23px;color:var(--brand-d);font-weight:800}
+.thanks p{margin:0;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.refbox{display:inline-block;margin:18px 0 6px;background:var(--brand-xl);border:1px dashed var(--brand-l);
+  border-radius:12px;padding:11px 20px;font-weight:800;color:var(--brand-d);font-size:15px;letter-spacing:1px}
+.again{margin-top:22px;background:#fff;border:1.5px solid var(--brand);color:var(--brand-d);border-radius:13px;
+  padding:13px 26px;font-family:var(--sans);font-weight:800;font-size:15px;cursor:pointer;transition:.15s}
+.again:hover{background:var(--brand-xl)}
+
+/* admin */
+.admin-wrap{max-width:1000px}
+.admin{background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.admin-head{background:linear-gradient(135deg,var(--brand-d),var(--brand));color:#fff;padding:18px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.admin-head b{font-size:18px;font-weight:800}
+.admin-head .sp{flex:1}
+.abtn{border:none;border-radius:10px;padding:9px 15px;font-family:var(--sans);font-weight:800;font-size:13px;cursor:pointer}
+.abtn.g{background:#fff;color:var(--brand-d)}
+.abtn.gh{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.abtn.rd{background:rgba(255,255,255,.16);color:#FFE0DC;border:1px solid rgba(255,220,215,.4)}
+.stat{display:flex;gap:14px;padding:16px 22px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.stat .box{background:var(--brand-xl);border-radius:13px;padding:12px 18px;min-width:120px}
+.stat .box .n{font-size:26px;font-weight:800;color:var(--brand-d)}
+.stat .box .l{font-size:12px;color:var(--ink2);font-weight:600}
+.tbl-wrap{overflow-x:auto;max-height:60vh}
+table.rt{border-collapse:collapse;width:100%;font-size:13px;min-width:680px}
+table.rt th{position:sticky;top:0;background:#F4F9F7;color:var(--brand-d);font-weight:800;padding:11px 12px;text-align:right;border-bottom:2px solid var(--line);white-space:nowrap}
+table.rt td{padding:10px 12px;border-bottom:1px solid #EEF4F1;color:var(--ink)}
+table.rt tr:hover td{background:#FAFDFC}
+.delx{border:1px solid #e6c6c2;background:#fff;color:var(--err);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:12px;font-weight:700}
+.empty{padding:40px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<!-- ============ FORM ============ -->
+<div class="shell" id="formShell">
+  <div class="brandbar">
+    <div class="logo" id="logoMark">و</div>
+    <div class="bt"><b>وابيز للتعليم والتدريب</b><span>Wabys for Education &amp; Training</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h1>التسجيل في دورات التدريب المهني</h1>
+      <p>يسعدنا انضمامك. برجاء تعبئة البيانات التالية للتقديم في الدورة التدريبية المناسبة — الحقول المميّزة بعلامة <span style="color:var(--gold-d);font-weight:800">*</span> إلزامية.</p>
+    </div>
+    <div class="card-body">
+      <form id="appForm" novalidate>
+
+        <div class="fld">
+          <label for="f_name">الاسم الكامل <span class="req">*</span></label>
+          <div class="control" id="c_name">
+            <span class="ic">👤</span>
+            <input type="text" id="f_name" name="name" placeholder="مثال: محمد أحمد علي" autocomplete="name" maxlength="60">
+          </div>
+          <div class="err" id="e_name">برجاء إدخال الاسم الكامل (الاسم الأول واسم العائلة على الأقل).</div>
+        </div>
+
+        <div class="fld">
+          <label for="f_mobile">رقم الموبايل <span class="req">*</span></label>
+          <div class="control" id="c_mobile">
+            <span class="ic">📱</span>
+            <input type="tel" id="f_mobile" name="mobile" placeholder="01xxxxxxxxx" inputmode="numeric" autocomplete="tel" maxlength="11">
+          </div>
+          <div class="hint">١١ رقمًا يبدأ بـ ٠١٠ أو ٠١١ أو ٠١٢ أو ٠١٥.</div>
+          <div class="err" id="e_mobile">رقم موبايل غير صحيح. أدخل ١١ رقمًا يبدأ بـ ٠١٠/٠١١/٠١٢/٠١٥.</div>
+        </div>
+
+        <div class="fld">
+          <label for="f_gov">المحافظة <span class="req">*</span></label>
+          <div class="control" id="c_gov">
+            <span class="ic">📍</span>
+            <select id="f_gov" name="gov"><option value="" disabled selected>اختر المحافظة…</option></select>
+          </div>
+          <div class="err" id="e_gov">برجاء اختيار المحافظة.</div>
+        </div>
+
+        <div class="fld">
+          <label for="f_course">دورة التدريب المهني <span class="req">*</span></label>
+          <div class="control" id="c_course">
+            <span class="ic">🎓</span>
+            <select id="f_course" name="course"><option value="" disabled selected>اختر الدورة…</option></select>
+          </div>
+          <div class="err" id="e_course">برجاء اختيار الدورة التدريبية.</div>
+        </div>
+
+        <button type="submit" class="submit">إرسال الطلب</button>
+        <div class="note">🔒 بياناتك تُستخدم لأغراض التسجيل في التدريب فقط.</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="foot"><a id="adminLink">لوحة المشرف</a></div>
+</div>
+
+<!-- ============ THANK YOU ============ -->
+<div class="shell" id="thanksShell" style="display:none">
+  <div class="brandbar">
+    <div class="logo">و</div>
+    <div class="bt"><b>وابيز للتعليم والتدريب</b><span>Wabys for Education &amp; Training</span></div>
+  </div>
+  <div class="card">
+    <div class="thanks">
+      <div class="check"><svg viewBox="0 0 24 24"><polyline points="4 12.5 10 18 20 6"/></svg></div>
+      <h2>تم استلام طلبك بنجاح ✅</h2>
+      <p>شكرًا لتسجيلك في دورات التدريب المهني.<br>سيتواصل معك فريق <b>وابيز للتعليم والتدريب</b> قريبًا على رقم الموبايل المُدخَل.</p>
+      <div class="refbox" id="refOut">—</div>
+      <div><button class="again" id="againBtn">تقديم طلب آخر</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ADMIN ============ -->
+<div class="shell admin-wrap" id="adminShell" style="display:none">
+  <div class="brandbar">
+    <div class="logo">و</div>
+    <div class="bt"><b>لوحة الطلبات</b><span>وابيز للتعليم والتدريب</span></div>
+  </div>
+  <div class="admin">
+    <div class="admin-head">
+      <b>طلبات التدريب المهني</b>
+      <div class="sp"></div>
+      <button class="abtn g" id="expXls">⬇ تصدير Excel</button>
+      <button class="abtn gh" id="expCsv">⬇ CSV</button>
+      <button class="abtn gh" id="resync">↻ إعادة إرسال غير المتزامن</button>
+      <button class="abtn rd" id="delAll">🗑 حذف الكل</button>
+      <button class="abtn gh" id="backForm">← رجوع للنموذج</button>
+    </div>
+    <div class="stat">
+      <div class="box"><div class="n" id="stTotal">0</div><div class="l">إجمالي الطلبات</div></div>
+      <div class="box"><div class="n" id="stGov">0</div><div class="l">عدد المحافظات</div></div>
+      <div class="box"><div class="n" id="stCourse">0</div><div class="l">عدد الدورات المطلوبة</div></div>
+      <div class="box"><div class="n" id="stSync">—</div><div class="l" id="stSyncL">حالة الربط بالشيت</div></div>
+    </div>
+    <div class="tbl-wrap"><table class="rt" id="rtbl"></table></div>
+  </div>
+</div>
+
+<script>
+/* ===================== data ===================== */
+var GOVS=["القاهرة","الجيزة","القليوبية","الإسكندرية","البحيرة","مطروح","دمياط","الدقهلية","الشرقية","كفر الشيخ","الغربية","المنوفية","بورسعيد","الإسماعيلية","السويس","شمال سيناء","جنوب سيناء","الفيوم","بني سويف","المنيا","أسيوط","سوهاج","قنا","الأقصر","أسوان","البحر الأحمر","الوادي الجديد"];
+
+var COURSES=[
+ ["الكهرباء والطاقة",["كهرباء منازل","كهرباء صناعية","لفّ وصيانة المحركات","تركيب وصيانة الطاقة الشمسية","أنظمة الإنذار والإطفاء","تركيب كاميرات وأنظمة المراقبة","تمديدات وشبكات كهربائية"]],
+ ["الميكانيكا والسيارات",["ميكانيكا سيارات","كهرباء سيارات","سمكرة ودهان سيارات","ميكانيكا ديزل","صيانة كمبيوتر السيارات","خراطة وتشغيل معادن CNC","لحام (أرك/أرجون/أكسجين)","حدادة وتشكيل معادن"]],
+ ["التبريد والتكييف",["تبريد وتكييف","صيانة الأجهزة المنزلية","صيانة الثلاجات والغسالات","تكييف مركزي (تشيلر)"]],
+ ["الإنشاءات والتشطيبات",["سباكة صحية","نجارة موبيليا","نجارة مسلّح","محارة وبياض","تركيب سيراميك ورخام","تركيب جبس بورد","دهانات وديكور","تركيب ألوميتال وسيكوريت","عزل مائي وحراري","تركيب مطابخ"]],
+ ["تكنولوجيا المعلومات",["صيانة كمبيوتر","الشبكات (Networking)","برمجة وتطوير الويب","تصميم جرافيك","مونتاج وإنتاج فيديو","التسويق الرقمي","إدخال بيانات وسكرتارية إلكترونية","صيانة الموبايل","أساسيات الحاسب و ICDL"]],
+ ["الإدارة والأعمال",["محاسبة مالية","المحاسبة على البرامج (Excel/ERP)","إدارة المخازن والمشتريات","خدمة العملاء والكول سنتر","سكرتارية وإدارة مكتبية","إدارة المبيعات"]],
+ ["الحرف والخدمات",["خياطة وتفصيل","تريكو وملابس جاهزة","تصفيف وتجميل (كوافير)","الطهي وإعداد الطعام (شيف)","حلواني ومخبوزات","الضيافة والفندقة","باريستا وإعداد المشروبات"]],
+ ["الصحة والسلامة",["تمريض ومساعد رعاية","إسعافات أولية","الأمن والسلامة المهنية (OSHA)"]],
+ ["الزراعة والأغذية",["التصنيع الغذائي","الإنتاج الداجني","الاستزراع السمكي","الزراعة المحمية (الصوب)"]],
+ ["أخرى",["دورة أخرى (غير مذكورة)"]]
+];
+
+/* ===================== helpers ===================== */
+var $=function(s){return document.querySelector(s);};
+var STORE='wabys_vt_applications';
+var ADMIN_PIN='2025'; /* يمكن تغيير هذا الرمز من داخل الكود */
+
+/* ==========================================================================
+   تجميع الردود في Google Sheet:
+   الصق رابط «تطبيق الويب» (Web App URL) الذي حصلت عليه من Google Apps Script
+   بين علامتي التنصيص بالأسفل، ثم انشر الملف. تصل كل الطلبات تلقائيًا إلى الشيت.
+   Paste your Google Apps Script Web App URL between the quotes below.
+   ========================================================================== */
+var SHEET_ENDPOINT=''; /* مثال: https://script.google.com/macros/s/AKfycb..../exec */
+
+function toArNum(s){ var m={'0':'٠','1':'١','2':'٢','3':'٣','4':'٤','5':'٥','6':'٦','7':'٧','8':'٨','9':'٩'}; return (''+s).replace(/[0-9]/g,function(d){return m[d];}); }
+function toEnNum(s){ var m={'٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9'}; return (''+s).replace(/[٠-٩]/g,function(d){return m[d];}); }
+function load(){ try{ return JSON.parse(localStorage.getItem(STORE)||'[]'); }catch(e){ return []; } }
+function save(list){ try{ localStorage.setItem(STORE, JSON.stringify(list)); }catch(e){} }
+
+/* ---- send responses to the Google Sheet (with local backup + auto-retry) ---- */
+function endpoint(){ return (SHEET_ENDPOINT||'').trim(); }
+function sendToSheet(rec){ var url=endpoint(); if(!url) return Promise.resolve(false);
+ return fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(rec)})
+   .then(function(){ return true; }).catch(function(){ return false; }); }
+function syncPending(){ var url=endpoint(); if(!url) return; var list=load();
+ list.forEach(function(r){ if(!r.synced){ sendToSheet(r).then(function(ok){ if(ok){ r.synced=true; save(list); } }); } }); }
+
+/* ===================== build dropdowns ===================== */
+(function(){
+ var g=$('#f_gov'); GOVS.forEach(function(x){ var o=document.createElement('option'); o.value=x; o.textContent=x; g.appendChild(o); });
+ var c=$('#f_course');
+ COURSES.forEach(function(grp){ var og=document.createElement('optgroup'); og.label=grp[0]; grp[1].forEach(function(x){ var o=document.createElement('option'); o.value=x; o.textContent=x; og.appendChild(o); }); c.appendChild(og); });
+})();
+
+/* ===================== validation ===================== */
+function setBad(id,bad){ var c=$('#c_'+id); if(c)c.classList.toggle('bad',!!bad); }
+function validName(v){ v=(v||'').trim(); return v.length>=5 && /\s/.test(v) && /[؀-ۿ]/.test(v); }
+function validMobile(v){ return /^01[0125][0-9]{8}$/.test(v); }
+
+/* live: keep mobile numeric (accept arabic digits too) */
+$('#f_mobile').addEventListener('input',function(e){ var v=toEnNum(e.target.value).replace(/[^0-9]/g,'').slice(0,11); e.target.value=v; if(v.length>=11)setBad('mobile',!validMobile(v)); });
+$('#f_name').addEventListener('input',function(){ setBad('name',false); });
+$('#f_gov').addEventListener('change',function(){ setBad('gov',false); });
+$('#f_course').addEventListener('change',function(){ setBad('course',false); });
+
+/* ===================== submit ===================== */
+$('#appForm').addEventListener('submit',function(ev){
+ ev.preventDefault();
+ var name=$('#f_name').value.trim();
+ var mobile=toEnNum($('#f_mobile').value).replace(/[^0-9]/g,'');
+ var gov=$('#f_gov').value;
+ var course=$('#f_course').value;
+ var ok=true;
+ if(!validName(name)){ setBad('name',true); ok=false; } else setBad('name',false);
+ if(!validMobile(mobile)){ setBad('mobile',true); ok=false; } else setBad('mobile',false);
+ if(!gov){ setBad('gov',true); ok=false; } else setBad('gov',false);
+ if(!course){ setBad('course',true); ok=false; } else setBad('course',false);
+ if(!ok){ var bad=document.querySelector('.control.bad'); if(bad)bad.scrollIntoView({block:'center',behavior:'smooth'}); return; }
+
+ var list=load();
+ var seq=list.length+1;
+ var ref='WB-'+String(seq).padStart(4,'0');
+ var now=new Date();
+ var rec={ ref:ref, name:name, mobile:mobile, gov:gov, course:course,
+   ts:now.toLocaleString('ar-EG',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}),
+   iso:now.toISOString(), synced:false };
+ list.push(rec); save(list);
+ sendToSheet(rec).then(function(ok){ if(ok){ rec.synced=true; save(list); } });
+
+ $('#refOut').textContent='رقم طلبك: '+ref;
+ $('#formShell').style.display='none';
+ $('#adminShell').style.display='none';
+ $('#thanksShell').style.display='block';
+ window.scrollTo(0,0);
+});
+
+/* ===================== thank-you: another ===================== */
+$('#againBtn').addEventListener('click',function(){
+ $('#appForm').reset();
+ ['name','mobile','gov','course'].forEach(function(id){ setBad(id,false); });
+ $('#thanksShell').style.display='none';
+ $('#formShell').style.display='block';
+ window.scrollTo(0,0);
+});
+
+/* ===================== admin ===================== */
+function esc(s){ return (''+(s==null?'':s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function openAdmin(){
+ var pin=prompt('أدخل رمز المشرف لعرض الطلبات:');
+ if(pin===null) return;
+ if(toEnNum(pin).trim()!==ADMIN_PIN){ alert('رمز غير صحيح.'); return; }
+ renderAdmin();
+ $('#formShell').style.display='none'; $('#thanksShell').style.display='none'; $('#adminShell').style.display='block';
+ window.scrollTo(0,0);
+}
+function renderAdmin(){
+ var list=load();
+ $('#stTotal').textContent=toArNum(list.length);
+ $('#stGov').textContent=toArNum(new Set(list.map(function(r){return r.gov;})).size);
+ $('#stCourse').textContent=toArNum(new Set(list.map(function(r){return r.course;})).size);
+ var url=endpoint(); var pend=list.filter(function(r){return !r.synced;}).length;
+ var sy=$('#stSync'); if(!url){ sy.textContent='غير مربوط'; sy.style.color='#C0392B'; $('#stSyncL').textContent='لم يُضبط رابط الشيت'; }
+ else if(pend){ sy.textContent=toArNum(pend); sy.style.color='#A9861F'; $('#stSyncL').textContent='بانتظار الإرسال للشيت'; }
+ else { sy.textContent='✓'; sy.style.color='#0E7C66'; $('#stSyncL').textContent='الكل مُرسَل للشيت'; }
+ var t=$('#rtbl');
+ if(!list.length){ t.innerHTML='<tbody><tr><td class="empty">لا توجد طلبات بعد.</td></tr></tbody>'; return; }
+ var head='<thead><tr><th>#</th><th>رقم الطلب</th><th>الاسم الكامل</th><th>الموبايل</th><th>المحافظة</th><th>الدورة</th><th>التاريخ والوقت</th><th>الشيت</th><th></th></tr></thead>';
+ var body=list.map(function(r,i){
+   var sync=url?(r.synced?'<span style="color:#0E7C66;font-weight:800">✓</span>':'<span style="color:#A9861F">⏳</span>'):'<span style="color:#B7C3BE">—</span>';
+   return '<tr><td>'+toArNum(i+1)+'</td><td>'+esc(r.ref)+'</td><td><b>'+esc(r.name)+'</b></td><td dir="ltr" style="text-align:right">'+esc(r.mobile)+'</td><td>'+esc(r.gov)+'</td><td>'+esc(r.course)+'</td><td style="white-space:nowrap;color:var(--muted)">'+esc(r.ts)+'</td><td style="text-align:center">'+sync+'</td>'
+     +'<td><button class="delx" data-i="'+i+'">حذف</button></td></tr>';
+ }).join('');
+ t.innerHTML=head+'<tbody>'+body+'</tbody>';
+ t.querySelectorAll('.delx').forEach(function(b){ b.onclick=function(){ var i=+b.dataset.i; if(confirm('حذف هذا الطلب؟')){ var l=load(); l.splice(i,1); save(l); renderAdmin(); } }; });
+}
+function download(name,blob){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},120); }
+function stamp(){ var d=new Date(); return d.getFullYear()+''+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0'); }
+
+$('#expXls').addEventListener('click',function(){
+ var list=load(); if(!list.length){ alert('لا توجد طلبات للتصدير.'); return; }
+ var H=['م','رقم الطلب','الاسم الكامل','رقم الموبايل','المحافظة','الدورة','التاريخ والوقت'];
+ var rows=list.map(function(r,i){ return [i+1,r.ref,r.name,r.mobile,r.gov,r.course,r.ts]; });
+ var html='<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8">'
+   +'<style>table{border-collapse:collapse}td,th{border:1px solid #9bb5ad;padding:6px 10px;font-family:Tahoma;font-size:12px}th{background:#0E7C66;color:#fff;font-weight:bold}</style></head>'
+   +'<body><table dir="rtl"><tr>'+H.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr>'
+   +rows.map(function(r){ return '<tr>'+r.map(function(c,ci){ var st=(ci===3)?" style=\"mso-number-format:'\\@'\"":''; return '<td'+st+'>'+esc(c)+'</td>'; }).join('')+'</tr>'; }).join('')
+   +'</table></body></html>';
+ download('طلبات_التدريب_المهني_'+stamp()+'.xls', new Blob(['﻿'+html],{type:'application/vnd.ms-excel;charset=utf-8'}));
+});
+$('#expCsv').addEventListener('click',function(){
+ var list=load(); if(!list.length){ alert('لا توجد طلبات للتصدير.'); return; }
+ var H=['م','رقم الطلب','الاسم الكامل','رقم الموبايل','المحافظة','الدورة','التاريخ والوقت'];
+ function q(v){ return '"'+(''+(v==null?'':v)).replace(/"/g,'""')+'"'; }
+ var lines=[H.map(q).join(',')];
+ list.forEach(function(r,i){ lines.push([q(i+1),q(r.ref),q(r.name),'="'+r.mobile+'"',q(r.gov),q(r.course),q(r.ts)].join(',')); });
+ download('طلبات_التدريب_المهني_'+stamp()+'.csv', new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));
+});
+$('#delAll').addEventListener('click',function(){
+ if(!load().length){ alert('لا توجد طلبات.'); return; }
+ if(confirm('سيتم حذف جميع الطلبات نهائيًا. هل أنت متأكد؟')){ save([]); renderAdmin(); }
+});
+$('#resync').addEventListener('click',function(){ if(!endpoint()){ alert('لم يتم ضبط رابط Google Sheet في الملف بعد.'); return; } syncPending(); setTimeout(renderAdmin,1600); });
+$('#backForm').addEventListener('click',function(){ $('#adminShell').style.display='none'; $('#formShell').style.display='block'; window.scrollTo(0,0); });
+$('#adminLink').addEventListener('click',openAdmin);
+
+/* on load: retry sending any responses that didn't reach the sheet earlier */
+try{ syncPending(); }catch(e){}
+</script>
+</body>
+</html>
